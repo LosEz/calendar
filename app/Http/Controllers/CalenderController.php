@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 
 use Log;
+use DB;
+use Exception;
 
 class CalenderController extends Controller
 {
@@ -78,6 +80,7 @@ class CalenderController extends Controller
 
                 $result = DB::table("events")->insert($event);
                 Log::info('[' . __METHOD__ . '] result ' . $result);
+
                 return response()->json($event);
             }
 
