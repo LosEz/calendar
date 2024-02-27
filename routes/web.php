@@ -19,4 +19,5 @@ Route::get('/', function () {
 });
 
 Route::get('calenders', [CalenderController::class, 'index']);
+Route::get('calenders/search', [CalenderController::class, 'searchData']);
 Route::post('calenders/action', [CalenderController::class, 'action']);

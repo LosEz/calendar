@@ -55,6 +55,39 @@ class CalenderController extends Controller
         return view('calender');
     }
 
+    public function searchData(Request $request)
+    {
+            $sql = "SELECT id, title, start, end, user, description, step FROM events
+                WHERE date_format(`start`,'%Y-%m-%d') > '$request->start' 
+                AND date_format(`start`,'%Y-%m-%d') > '$request->end'";
+
+            Log::info('[' . __METHOD__ . '] sql ' . $sql);
+
+            $data = DB::select(sql);
+
+            $oldUser = "";
+            $color = $this->colorPastel();
+            $colorCount = 0;
+            $colorOld = "";
+
+            for($i = 0; $i < count($data); $i++) {
+
+                $evn = $data[$i];
+                
+                if($evn->user != $oldUser) {
+                    $colorOld = $color[$colorCount];
+                    $data[$i]->color = $colorOld;
+                    $oldUser = $evn->user;
+                    $colorCount++;
+                } else {
+                    $data[$i]->color = $colorOld;
+                }
+
+            }
+            Log::info('[' . __METHOD__ . '] load with data ');
+            return response()->json($data);
+    }
+
     public function action(Request $request)
     {
         if ($request->ajax()) {
