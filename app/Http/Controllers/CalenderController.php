@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Models\Event;
 
+use Log;
+
 class CalenderController extends Controller
 {
     public function index(Request $request)
@@ -45,6 +47,7 @@ class CalenderController extends Controller
     public function action(Request $request)
     {
         if ($request->ajax()) {
+            Log::info('[' . __METHOD__ . '] method ' . $request->type );
             if ($request->type == 'add') {
                 $event = Event::create([
                     'title' => $request->title,
