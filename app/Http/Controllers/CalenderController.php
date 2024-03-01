@@ -15,18 +15,18 @@ class CalenderController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            // $data = Event::whereDate('start', '>=', $request->start)
-            //     ->whereDate('end', '<=', $request->end)
-            //     ->orderBy('user', 'ASC')
-            //     ->get(['id', 'title', 'start', 'end', 'user', 'description', 'step']);
+            $data = Event::whereDate('start', '>=', $request->start)
+                ->whereDate('end', '<=', $request->end)
+                ->orderBy('user', 'ASC')
+                ->get(['id', 'title', 'start', 'end', 'user', 'description', 'step']);
 
-            $sql = "SELECT id, title, start, end, user, description, step FROM events
-                WHERE date_format(`start`,'%Y-%m-%d') > '$request->start' 
-                AND date_format(`start`,'%Y-%m-%d') > '$request->end'";
+            // $sql = "SELECT id, title, start, end, user, description, step FROM events
+            //     WHERE date_format(`start`,'%Y-%m-%d') > '$request->start' 
+            //     AND date_format(`start`,'%Y-%m-%d') > '$request->end'";
 
-            Log::info('[' . __METHOD__ . '] sql ' . $sql);
+            // Log::info('[' . __METHOD__ . '] sql ' . $sql);
 
-            $data = DB::select(sql);
+            // $data = DB::select(sql);
 
             $oldUser = "";
             $color = $this->colorPastel();

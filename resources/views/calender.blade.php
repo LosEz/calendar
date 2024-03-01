@@ -156,7 +156,7 @@
                     center: 'title',
                     right: 'month,agendaWeek,agendaDay'
                 },
-                events: '{{URL::to("calenders/search")}}',
+                events: '{{URL::to("calenders")}}',
                 eventRender: function (event, element) {
                     //if (event.icon) {
                         element.find(".fc-time").html("<i class='fa fa-hospital-o'></i>")
