@@ -18,6 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('calenders', [CalenderController::class, 'index']);
-Route::get('calenders/search', [CalenderController::class, 'searchData']);
-Route::post('calenders/action', [CalenderController::class, 'action']);
+Route::prefix('calenders')->group(function () {
+    Route::get('/', [CalenderController::class, 'index']);
+    Route::post('/search', [CalenderController::class, 'searchData']);
+    Route::post('/action', [CalenderController::class, 'action']);
+});
