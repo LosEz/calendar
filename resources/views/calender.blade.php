@@ -217,7 +217,8 @@
                             start: start,
                             end: end,
                             id: id,
-                            type: 'update'
+                            type: 'update',
+                            _token: '{!! csrf_token() !!}'
                         },
                         success: function (response) {
                             calendar.fullCalendar('refetchEvents');
@@ -238,7 +239,8 @@
                             start: start,
                             end: end,
                             id: id,
-                            type: 'update'
+                            type: 'update',
+                            _token: '{!! csrf_token() !!}'
                         },
                         success: function (response) {
                             calendar.fullCalendar('refetchEvents');
@@ -320,7 +322,8 @@ function actionCalender(action) {
             user: user,
             desc: desc,
             step: step,
-            type: 'add'
+            type: 'add',
+            _token: '{!! csrf_token() !!}'
         },
         success: function (data) {
             calendar.fullCalendar('refetchEvents');
